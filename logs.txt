@@ -20,3 +20,52 @@
 2020-08-17 20:53:05 INFO  Driver:26 - The application has started.
 2020-08-17 20:53:05 INFO  Driver:38 - Connection successful
 2020-08-17 20:53:05 INFO  Driver:44 - The application has closed.
+2020-08-18 12:10:22 INFO  AccountService:166 - adding a user: User [id=0, firstName=melia, lastName=m, email=m, password=m, userType=customer]
+2020-08-18 12:30:06 INFO  AccountService:51 - list in insert account: [User [id=2, firstName=a, lastName=b, email=d, password=f, userType=d], User [id=3, firstName=p, lastName=d, email=e, password=a, userType=a], User [id=4, firstName=melia, lastName=m, email=m, password=m, userType=customer], User [id=1, firstName=Olivia, lastName=Raymond, email=oliva@gmail.com, password=Soccer, userType=customer]]
+2020-08-18 12:30:06 INFO  AccountService:64 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=0, user =User [id=4, firstName=melia, lastName=m, email=null, password=m, userType=customer]]with a new User:User [id=4, firstName=melia, lastName=m, email=null, password=m, userType=customer]
+2020-08-18 12:30:06 INFO  AccountService:138 - Retrieving user accounts
+2020-08-18 12:30:07 INFO  AccountService:138 - Retrieving user accounts
+2020-08-18 12:34:59 INFO  AccountService:51 - list in insert account: [User [id=2, firstName=a, lastName=b, email=d, password=f, userType=d], User [id=3, firstName=p, lastName=d, email=e, password=a, userType=a], User [id=4, firstName=melia, lastName=m, email=m, password=m, userType=customer], User [id=1, firstName=Olivia, lastName=Raymond, email=oliva@gmail.com, password=Soccer, userType=customer]]
+2020-08-18 12:34:59 INFO  AccountService:64 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=0, user =User [id=4, firstName=melia, lastName=m, email=null, password=m, userType=customer]]with a new User:User [id=4, firstName=melia, lastName=m, email=null, password=m, userType=customer]
+2020-08-18 12:34:59 INFO  AccountService:138 - Retrieving user accounts
+2020-08-18 12:35:00 INFO  AccountService:138 - Retrieving user accounts
+2020-08-18 14:45:56 INFO  AccountService:51 - list in insert account: [User [id=2, firstName=a, lastName=b, email=d, password=f, userType=d], User [id=3, firstName=p, lastName=d, email=e, password=a, userType=a], User [id=4, firstName=melia, lastName=m, email=m, password=m, userType=customer], User [id=1, firstName=Olivia, lastName=Raymond, email=oliva@gmail.com, password=Soccer, userType=customer]]
+2020-08-18 14:45:56 INFO  AccountService:64 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=0, user =User [id=4, firstName=melia, lastName=m, email=null, password=m, userType=customer]]with a new User:User [id=4, firstName=melia, lastName=m, email=null, password=m, userType=customer]
+2020-08-18 14:45:57 INFO  AccountService:143 - Retrieving user accounts
+2020-08-18 14:46:06 INFO  Driver:26 - The application has started.
+2020-08-18 14:46:06 INFO  Driver:38 - Connection successful
+2020-08-18 14:46:06 INFO  Driver:44 - The application has closed.
+2020-08-18 15:02:34 INFO  AccountService:51 - list in insert account: [User [id=2, firstName=a, lastName=b, email=d, password=f, userType=d], User [id=3, firstName=p, lastName=d, email=e, password=a, userType=a], User [id=4, firstName=melia, lastName=m, email=m, password=m, userType=customer], User [id=1, firstName=Olivia, lastName=Raymond, email=oliva@gmail.com, password=Soccer, userType=customer]]
+2020-08-18 15:02:34 INFO  AccountService:64 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=0, user =User [id=4, firstName=melia, lastName=m, email=null, password=m, userType=customer]]with a new User:User [id=4, firstName=melia, lastName=m, email=null, password=m, userType=customer]
+2020-08-18 15:02:34 INFO  AccountService:143 - Retrieving user accounts
+2020-08-18 15:06:10 INFO  Driver:26 - The application has started.
+2020-08-18 15:06:11 INFO  Driver:38 - Connection successful
+2020-08-18 15:06:11 INFO  Driver:44 - The application has closed.
+2020-08-18 15:06:32 INFO  AccountService:51 - list in insert account: [User [id=2, firstName=a, lastName=b, email=d, password=f, userType=d], User [id=3, firstName=p, lastName=d, email=e, password=a, userType=a], User [id=4, firstName=melia, lastName=m, email=m, password=m, userType=customer], User [id=1, firstName=Olivia, lastName=Raymond, email=oliva@gmail.com, password=Soccer, userType=customer]]
+2020-08-18 15:06:32 INFO  AccountService:64 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=4, user =User [id=4, firstName=melia, lastName=m, email=null, password=m, userType=customer]]with a new User:User [id=4, firstName=melia, lastName=m, email=null, password=m, userType=customer]
+2020-08-18 15:06:33 INFO  AccountService:143 - Retrieving user accounts
+2020-08-18 15:10:50 INFO  AccountService:171 - adding a user: User [id=0, firstName=O, lastName=R, email=OR, password=s, userType=customer]
+2020-08-18 15:11:26 INFO  AccountService:51 - list in insert account: [User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:11:26 INFO  AccountService:64 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=5, user =User [id=5, firstName=O, lastName=R, email=null, password=s, userType=customer]]with a new User:User [id=5, firstName=O, lastName=R, email=null, password=s, userType=customer]
+2020-08-18 15:11:26 INFO  AccountService:143 - Retrieving user accounts
+2020-08-18 15:17:13 INFO  AccountService:51 - list in insert account: [User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:17:13 INFO  AccountService:64 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=5, user =User [id=5, firstName=O, lastName=R, email=null, password=s, userType=customer]]with a new User:User [id=5, firstName=O, lastName=R, email=null, password=s, userType=customer]
+2020-08-18 15:17:13 INFO  AccountService:143 - Retrieving user accounts
+2020-08-18 15:18:58 INFO  AccountService:51 - list in insert account: [User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:18:58 INFO  AccountService:64 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=5, user =User [id=5, firstName=O, lastName=R, email=null, password=s, userType=customer]]with a new User:User [id=5, firstName=O, lastName=R, email=null, password=s, userType=customer]
+2020-08-18 15:18:58 INFO  AccountService:143 - Retrieving user accounts
+2020-08-18 15:19:29 INFO  AccountService:51 - list in insert account: [User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:19:29 INFO  AccountService:64 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=5, user =User [id=5, firstName=O, lastName=R, email=null, password=s, userType=customer]]with a new User:User [id=5, firstName=O, lastName=R, email=null, password=s, userType=customer]
+2020-08-18 15:19:29 INFO  AccountService:143 - Retrieving user accounts
+2020-08-18 15:21:59 INFO  AccountService:51 - list in insert account: [User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:21:59 INFO  AccountService:64 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=5, user =User [id=5, firstName=O, lastName=R, email=null, password=s, userType=customer]]with a new User:User [id=5, firstName=O, lastName=R, email=null, password=s, userType=customer]
+2020-08-18 15:22:00 INFO  AccountService:143 - Retrieving user accounts
+2020-08-18 15:22:32 INFO  AccountService:51 - list in insert account: [User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:22:32 INFO  AccountService:59 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=5, user =User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:22:32 INFO  AccountService:143 - Retrieving user accounts
+2020-08-18 15:26:01 INFO  AccountService:51 - list in insert account: [User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:26:01 INFO  AccountService:59 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=5, user =User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:26:01 INFO  AccountService:142 - Retrieving user accounts
+2020-08-18 15:29:06 INFO  AccountService:51 - list in insert account: [User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:29:06 INFO  AccountService:59 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=5, user =User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
+2020-08-18 15:29:06 INFO  AccountService:142 - Retrieving user accounts

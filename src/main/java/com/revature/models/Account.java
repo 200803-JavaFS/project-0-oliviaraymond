@@ -11,19 +11,50 @@ public class Account implements Serializable{
 	private String accountType;
 	private double balance; //should I use double or float for balance?
 	private int userId;
+	private User user;
 	
 	public Account() {
 		super();
 	}
 
-	public Account(int status, String accountType, double balance, int userId) {
+	
+	public Account(int status, String accountType, double balance, User user) {
+		super();
+		this.status = status;
+		this.accountType = accountType;
+		this.balance = balance;
+		this.user = user;
+	}
+
+
+	public Account(int status, String accountType, double balance, int userId, User user) {
 		super();
 		this.status = status;
 		this.accountType = accountType;
 		this.balance = balance;
 		this.userId = userId;
+		this.user = user;
 	}
 	
+
+	public Account(int accountId, int status, String accountType, double balance, int userId, User user) {
+		super();
+		this.accountId = accountId;
+		this.status = status;
+		this.accountType = accountType;
+		this.balance = balance;
+		this.userId = userId;
+		this.user = user;
+	}
+
+	public Account(int accountId, int status, String accountType, double balance, User user) {
+		super();
+		this.accountId = accountId;
+		this.status = status;
+		this.accountType = accountType;
+		this.balance = balance;
+		this.user = user;
+	}
 
 	@Override
 	public int hashCode() {
@@ -36,6 +67,7 @@ public class Account implements Serializable{
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + status;
 		result = prime * result + userId;
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -61,13 +93,18 @@ public class Account implements Serializable{
 			return false;
 		if (userId != other.userId)
 			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Account [accountISd=" + accountId + ", status=" + status + ", accountType=" + accountType + ", balance="
-				+ balance + ", userId=" + userId + "]";
+				+ balance + ", userId=" + userId + ", user ="+ user +"]";
 	}
 
 	public int getAccountId() {
@@ -110,9 +147,13 @@ public class Account implements Serializable{
 		this.userId = userId;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
-	
-	
-	
-
 }
+	
+	

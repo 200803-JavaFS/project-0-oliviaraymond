@@ -1,5 +1,7 @@
 package com.revature.services;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,15 +18,72 @@ public class AccountService  {
 	private static IAccountDAO dao = new AccountDAO();
 	private static final Logger log = LogManager.getLogger(AccountService.class);
 	
-	//call all the account and user dao methods
 	
-	public User createUser(User u) {
-		User newUser = uDao.createUser(u);
-		Account a = new Account(0, null, 0.0, newUser.getId());
-		//call dao to save account to user
+	//account control methods -------------------
+	
+	public List<Account> findAllAccounts() {
+		log.info("Retrieving all accounts");
+		List<Account> list = dao.getAllAccounts();
 		
-		return newUser;
+		// what goes here?
+		for (Account a: list) {
+			System.out.println("account :" + a);
+		}
+		return list;
 	}
+	
+	public Account findAccountById(int id) {
+		log.info("finding account with id " +id);
+		return dao.getAccountById(id);
+	}
+	
+	public boolean updateAccount(Account a) {
+		log.info("Updating account "+ a);
+		if (dao.updateAccount(a)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean insertAccount(Account a) {
+		if (a.getUser() != null) {
+			List<User> list = uDao.findAll();
+			log.info("list in insert account: "+ list);
+			boolean b = false;
+			for (User u: list) {
+				if (u.equals(a.getUser())) {
+					b = true;
+				}
+			}
+			if (b) {
+				log.info("Adding account: " + a);
+				if (dao.createAccount(a)) {
+					return true;
+				}
+			} else {
+				log.info("Adding account: " + a + "with a new User:" + a.getUser());
+				if (dao.addAccountWithUser(a)) {
+					return true;
+				}
+			}
+		} else {
+//			log.info("Adding account: " + a);
+//			if (dao.createAccount(a)) {
+//				return true;
+			}
+		return false;
+	}
+	
+	public boolean removeAccount(int id) {
+		log.info("deleting account with id: "+ id);
+		if (dao.deleteAccount(id)) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	// user control methods -------------------------------------------
 	
 	public User login(String email, String password) {
 		User u = uDao.getUserByEmail(email);
@@ -49,13 +108,11 @@ public class AccountService  {
 		}
 	}
 	
-	// should this go in console or in services?
-	public void deposit(double amount) {
+	
+	public void deposit(double amount, int id) {
 		validateAmount(amount);
-		
-		//setBalance(getBalance() + amount);
-		//talk to database
-		return;
+		Account a = dao.getAccountById(id);
+		dao.update((a.getBalance() + amount), id);
 	}
 	
 	public void withdraw(double amount, int id) {
@@ -68,13 +125,63 @@ public class AccountService  {
 		}
 	}
 	
-	public void transfer(double amount) {
+	public void transfer(double amount, int accountId) {
 		validateAmount(amount);
-		
-		return;
-		
+		Account a = dao.getAccountByAccountId(accountId);
+		if (a.getBalance() >= amount) {
+			if (a.getStatus() == 2) {
+				dao.update(amount, accountId);
+				
+			} else {
+				throw new IllegalArgumentException("Not an available account.");
+			}
+		}
 	}
 	
+	public List<Account> findUserAccounts(User u) {
+		log.info("Retrieving user accounts");
+		return uDao.findUserAccount(u);
+	}
 	
+	public List<User> findAllUsers() {
+		log.info("Retrieving all users");
+		return uDao.findAll();
+	}
+	
+	public User findUserById(int id) {
+		log.info("finding a user with id " +id);
+		return uDao.getUserById(id);
+	}
+	
+	public User findByEmail(String email) {
+		log.info("finding a user with email " + email);
+		return uDao.getUserByEmail(email);
+	}
+	
+	public boolean updateUser(User u) {
+		log.info("updating a user: " + u);
+		if (uDao.updateUser(u)) {
+			return true;
+		} 
+		return false;
+	}
+	
+	public boolean insertUser(User u) {
+		log.info("adding a user: " + u);
+
+		if (uDao.createUser(u)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean removeUser(int id) {
+		log.info("deleting a user with id: " + id);
+
+		if (uDao.deleteUser(id)) {
+			return true;
+		}
+		return false;
+	}
 	
 }

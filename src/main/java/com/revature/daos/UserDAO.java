@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.models.Account;
 import com.revature.models.User;
 import com.revature.util.ConnectionUtility;
 
@@ -50,7 +51,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public User createUser(User u) {
+	public boolean createUser(User u) {
 
 		try (Connection conn = ConnectionUtility.getConnection()) {
 
@@ -67,12 +68,13 @@ public class UserDAO implements IUserDAO {
 			statement.setString(++index, u.getUserType());
 
 			statement.execute();
-			return getUserByEmail(u.getEmail());
+//			getUserByEmail(u.getEmail());
+			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return false;
 	}
 
 	@Override
@@ -112,9 +114,9 @@ public class UserDAO implements IUserDAO {
 
 			if (result.next()) {
 				User u = new User();
-				u.setEmail(result.getString("user_email"));
 				u.setFirstName(result.getString("user_first_name"));
 				u.setLastName(result.getString("user_last_name"));
+				u.setEmail(result.getString("user_email"));
 				u.setPassword(result.getString("user_password"));
 				u.setUserType(result.getString("user_type"));
 
@@ -151,6 +153,7 @@ public class UserDAO implements IUserDAO {
 				u.setId(result.getInt("user_id"));
 				u.setFirstName(result.getString("user_first_name"));
 				u.setLastName(result.getString("user_last_name"));
+				u.setEmail(result.getString("user_email"));
 				u.setPassword(result.getString("user_password"));
 				u.setUserType(result.getString("user_type"));
 
@@ -168,17 +171,59 @@ public class UserDAO implements IUserDAO {
 		return null;
 
 	}
-
 	@Override
-	public int hideUserId(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean deleteUser(int id) {
+		try (Connection conn = ConnectionUtility.getConnection()) {
+			String sql = "DELETE FROM users WHERE user_id =" + id + ";";
+			Statement statement = conn.createStatement();
+			statement.execute(sql);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	@Override
-	public boolean isUserEmailUnique(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	public List<Account> findUserAccount(User u) {
+		try(Connection conn = ConnectionUtility.getConnection()) {
+			String sql = "SELECT * FROM accounts WHERE user_id_fk ="+u.getId()+";";
+			Statement statement = conn.createStatement();
+			List<Account> list = new ArrayList<>();
+			ResultSet result = statement.executeQuery(sql);
+			
+			while (result.next()) {
+				Account a = new Account(
+						result.getInt("account_number"),
+						result.getInt("status_of_account"),
+						result.getString("account_type"),
+						result.getDouble("account_balance"),
+						
+						null);
+				if (result.getInt("user_id_fk")!=0) {
+					a.setUser(this.getUserById(result.getInt("user_id_fk")));
+				}
+				list.add(a);
+
+			}
+			return list;
+			
+//			while(result.next()) {
+//				Account a = new Account();
+//				a.setAccountID(result.getInt("account_id")); 
+//				a.setBalance(result.getDouble("balance"));
+//				a.setStatusOfAccount(result.getInt("status_of_account"));
+//				a.setAccountType(result.getString("account_type"));
+//				a.setUser(result.getInt("user_id_fk"));
+//				list.add(a);
+//				
+//			}
+//			return list;
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
