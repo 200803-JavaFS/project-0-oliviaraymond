@@ -69,3 +69,8 @@
 2020-08-18 15:29:06 INFO  AccountService:51 - list in insert account: [User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
 2020-08-18 15:29:06 INFO  AccountService:59 - Adding account: Account [accountISd=0, status=1, accountType=CHECKING, balance=0.0, userId=5, user =User [id=5, firstName=O, lastName=R, email=OR, password=s, userType=customer]]
 2020-08-18 15:29:06 INFO  AccountService:142 - Retrieving user accounts
+2020-08-18 15:58:25 INFO  AccountService:170 - adding a user: User [id=0, firstName=o, lastName=r, email=or, password=s, userType=customer]
+2020-08-18 15:59:24 WARN  AccountDAO:72 - Failed query - getAccountByID
+2020-08-18 16:07:36 WARN  AccountDAO:72 - Failed query - getAccountByID
+2020-08-18 16:09:09 WARN  AccountDAO:72 - Failed query - getAccountByID
+2020-08-18 16:09:09 INFO  AccountService:123 - No bank account attached to this user

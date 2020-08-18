@@ -55,7 +55,6 @@ public class ConsoleUtility {
 
 	private void operationSwitch(String answer, User u) {
 		answer = answer.toLowerCase();
-
 		switch (answer) {
 		case "w":
 			System.out.println("How much would you like to withdraw?");
@@ -64,9 +63,15 @@ public class ConsoleUtility {
 			
 			break;
 		case "d":
+//			Account
+//			if (u.getAccountId == null) {
+//				System.out.println("That's not an account available account");
+//				operationMenu();
+			} else {
 			System.out.println("How much would you like to deposit?");
 			double amountD = scan.nextDouble();
 			as.deposit(amountD, loggedInUser.getId());
+			}
 			break;
 		case "t":
 			System.out.println("How much would you like to transfer?");
@@ -91,19 +96,19 @@ public class ConsoleUtility {
 			System.out.println("Error. Please type one of the three options listed. ");
 			break;
 		}
-		
+
 	}
 
 	private void viewAllUserAccounts(User u) {
-		System.out.println("You are viewing all of your accounts.");
+		System.out.println("Here are all of your bank accounts.");
 		List<Account> list = as.findUserAccounts(u);
-		for(Account a:list) {
+		for (Account a : list) {
 			System.out.println(a);
-		}	
-		try {			
+		}
+		try {
 			operationMenu(u);
 		} catch (InputMismatchException e) {
-			System.out.println("catching InputMismatchException here");
+			System.out.println("incorrect entry");
 			beginApp();
 		}
 	}
@@ -113,10 +118,10 @@ public class ConsoleUtility {
 		String accountType = scan.nextLine();
 		accountType = accountType.toLowerCase();
 		Account a = null;
-		
-		switch(accountType) {
+
+		switch (accountType) {
 		case "c":
-			a = new Account(1,"CHECKING", 0.0, u.getId(),u);
+			a = new Account(1, "CHECKING", 0.0, u.getId(), u);
 			as.insertAccount(a);
 			viewAllUserAccounts(u);
 			break;
@@ -126,12 +131,11 @@ public class ConsoleUtility {
 			viewAllUserAccounts(u);
 			break;
 		default:
-			System.out.println("System error.");
+			System.out.println("Type a S or a C.");
 			operationMenu(u);
 			break;
-		}		
+		}
 	}
-		
 
 	public void mainMenu() {
 		System.out.println("Welcome to Olivia's Bank! \n" + "Who are you? \n" + "I am a [C]urrent Customer \n"
@@ -160,7 +164,7 @@ public class ConsoleUtility {
 			exit = true;
 			break;
 		default:
-			System.out.println("Error. Please type one of the three options listed. ");
+			System.out.println("Error. Please type one of the three options listed.");
 			break;
 		}
 	}
@@ -170,14 +174,19 @@ public class ConsoleUtility {
 				"Welcome to your new bank! \n" + "Please follow the steps to create an account. \n" + "[Exit]");
 		System.out.println("What is your first name? ");
 		String firstName = scan.nextLine();
+		firstName.toLowerCase();
 		System.out.println("What is your last name? ");
 		String lastName = scan.nextLine();
+		lastName.toLowerCase();
 		System.out.println("What is your email address? ");
 		String email = scan.nextLine();
+		email.toLowerCase();
 		System.out.println("What type of user are you? A customer, employee, or admin. ");
 		String type = scan.nextLine();
+		type.toLowerCase();
 		System.out.println("Create a password.");
 		String password = scan.nextLine();
+		password.toLowerCase();
 		User u = new User(firstName, lastName, email, password, type);
 		as.insertUser(u);
 		return u;
@@ -188,10 +197,11 @@ public class ConsoleUtility {
 		System.out.println("Welcome back loyal customer! \n" + "Please enter your login information \n");
 		System.out.println("What is your email? ");
 		String email = scan.nextLine();
+
 		System.out.println("What is your password? ");
 		String password = scan.nextLine();
 
-		User u = as.login(email, password);
+		User u = as.login(email.toLowerCase(), password.toLowerCase());
 		if (u == null) {
 			System.out.println("Not a current customer or invalid credentials");
 		} else {
@@ -205,12 +215,12 @@ public class ConsoleUtility {
 	private void adminMenu() {
 		System.out.println("Admin Portal \n" + "Enter login information: \n");
 		System.out.println("Welcome admin, what would you like to do?");
-		System.out.println("Here are all of the accounts");
+		System.out.println("All accounts in database:");
 		viewAccountsAsEmployeeAdmin();
-		System.out.println("Update account Status including cancelling (s), Update account Balance (b), or Exit (e)");
+		System.out.println("Update account [S]tatus, Update account [B]alance, or [E]xit");
 		String rep = scan.nextLine();
 		rep = rep.toLowerCase();
-		switch(rep) {
+		switch (rep) {
 		case "s":
 			System.out.println("Which account do you want to update the status of?");
 			int id = scan.nextInt();
@@ -219,14 +229,14 @@ public class ConsoleUtility {
 			updateStatusAdmin(a);
 			break;
 		case "b":
-			System.out.println("You are going to update the account balance of a user, admin.");
+			System.out.println("Updating balance of user...");
 			adminUpdateAccount();
 			break;
 		case "e":
-			System.out.println("Goodbye admin.");
+			System.out.println("Goodbye, admin.");
 			break;
 		default:
-			System.out.println("System error.");
+			System.out.println("Invalid input.");
 			adminMenu();
 			break;
 		}
@@ -234,20 +244,21 @@ public class ConsoleUtility {
 	}
 
 	private void adminUpdateAccount() {
-		System.out.println("Which account would you update?");
+		System.out.println("Which account id would you like to update?");
 		int id = scan.nextInt();
 		scan.nextLine();
 		Account a = as.findAccountById(id);
-		if (a.getStatus()==2) {			
-			System.out.println("Do you want make a WITHDRAW (w), TRANSFER (t), or DEPOSIT (d), or Exit (e)?");
+		if (a.getStatus() == 2) {
+			System.out.println("Do you want make a [W]ITHDRAW, [T]RANSFER, or [D]EPOSIT, or E[x]it?");
 			String resp = scan.nextLine();
 			resp = resp.toLowerCase();
-			switch(resp) {
+			switch (resp) {
 			case "w":
 				System.out.println("What is the amount you want to withdraw?");
 				double amountW = scan.nextDouble();
 				scan.nextLine();
-				a = new Account(a.getAccountId(),  a.getAccountType(), a.getBalance() - amountW, a.getStatus(), a.getUser());
+				a = new Account(a.getAccountId(), a.getAccountType(), a.getBalance() - amountW, a.getStatus(),
+						a.getUser());
 				as.updateAccount(a);
 				System.out.println(a);
 				adminMenu();
@@ -260,18 +271,20 @@ public class ConsoleUtility {
 				int accountIDToTranfersTo = scan.nextInt();
 				scan.nextLine();
 				Account accountT = as.findAccountById(accountIDToTranfersTo);
-				System.out.println("accountToTransferTo"+ accountT.getStatus());
-				System.out.println("accountToTransferTo"+ accountT);
-				if (accountT.getStatus()==2 && accountT != null) {
-					
-					a = new Account(a.getAccountId(),  a.getAccountType(), a.getBalance() - amountT, a.getStatus(), a.getUser());
+				System.out.println("accountToTransferTo" + accountT.getStatus());
+				System.out.println("accountToTransferTo" + accountT);
+				if (accountT.getStatus() == 2 && accountT != null) {
+
+					a = new Account(a.getAccountId(), a.getAccountType(), a.getBalance() - amountT, a.getStatus(),
+							a.getUser());
 					as.updateAccount(a);
-					accountT = new Account(accountT.getAccountId(), accountT.getStatus(), accountT.getAccountType(),  accountT.getBalance() + amountT, accountT.getUser());
+					accountT = new Account(accountT.getAccountId(), accountT.getStatus(), accountT.getAccountType(),
+							accountT.getBalance() + amountT, accountT.getUser());
 					as.updateAccount(accountT);
 					System.out.println(a);
 					adminMenu();
 				} else {
-					System.out.println("That's not an account available account");
+					System.out.println("Account not available.");
 					viewAccountsAsEmployeeAdmin();
 				}
 				break;
@@ -279,64 +292,65 @@ public class ConsoleUtility {
 				System.out.println("What is the amount you want to deposit?");
 				double amountD = scan.nextDouble();
 				scan.nextLine();
-				a = new Account(a.getAccountId(),  a.getStatus(), a.getAccountType(), a.getBalance() + amountD, a.getUser());
+				a = new Account(a.getAccountId(), a.getStatus(), a.getAccountType(), a.getBalance() + amountD,
+						a.getUser());
 				as.updateAccount(a);
 				System.out.println(a);
 				adminMenu();
 				break;
 			case "e":
-				System.out.println("Goodbye admin.");
+				System.out.println("Goodbye, admin.");
 				break;
 			default:
-				System.out.println("System error.");
+				System.out.println("Invalid input");
 				adminMenu();
 				break;
 			}
 		} else {
-			System.out.println("You cannot access this account because the status is not open.");
+			System.out.println("You cannot access this account because it has not been approved as 'open'.");
 			adminMenu();
 		}
 	}
 
 	private void updateStatusAdmin(Account a) {
-		System.out.println("What do you want to change the status to be? Pending (p), Open (o), Cancel (c).");
-		String resp = scan.nextLine();
-		resp = resp.toLowerCase();
-		switch(resp) {
+		System.out.println("What do you want to change the status to be? [P]ending, [O]pen, or [C]ancel.");
+		String answer = scan.nextLine();
+		answer = answer.toLowerCase();
+		switch (answer) {
 		case "p":
-			System.out.println("The account status will be pending.");
-			Account acc = new Account(a.getAccountId(),  1, a.getAccountType(), a.getBalance(), a.getUser());
+			System.out.println("The account status is now pending.");
+			Account acc = new Account(a.getAccountId(), 1, a.getAccountType(), a.getBalance(), a.getUser());
 			as.updateAccount(acc);
 			employeeLogoutMenu();
 			break;
 		case "o":
-			System.out.println("The account status will be open.");
-			Account acco = new Account(a.getAccountId(), 2, a.getAccountType(),a.getBalance(), a.getUser());
+			System.out.println("The account status is now open.");
+			Account acco = new Account(a.getAccountId(), 2, a.getAccountType(), a.getBalance(), a.getUser());
 			as.updateAccount(acco);
 			employeeLogoutMenu();
 			break;
 		case "c":
-			System.out.println("The account status will be closed.");
-			Account accC = new Account(a.getAccountId(),  3, a.getAccountType(), a.getBalance(), a.getUser());
+			System.out.println("The account status is now closed.");
+			Account accC = new Account(a.getAccountId(), 3, a.getAccountType(), a.getBalance(), a.getUser());
 			as.updateAccount(accC);
 			employeeLogoutMenu();
 			break;
 		default:
-			System.out.println("System error.");
-			try {			
+			System.out.println("Invalid input.");
+			try {
 				adminMenu();
 			} catch (InputMismatchException e) {
 				System.out.println("catching InputMismatchException here");
 				beginApp();
 			}
-			
+
 			break;
 		}
-		
+
 	}
 
 	private void employeeMenu() {
-		System.out.println("Employee Portal \n" + "Enter login information: \n" );
+		System.out.println("Employee Portal \n" + "Enter login information: \n");
 		System.out.println("What is your email? ");
 		String email = scan.nextLine();
 		System.out.println("What is your password? ");
@@ -351,7 +365,7 @@ public class ConsoleUtility {
 
 		}
 		System.out.println("As an employee, you are able to view account and user information.");
-		System.out.println("Here are all of the account information.");
+		System.out.println("All accounts in database:");
 		viewAccountsAsEmployeeAdmin();
 //		List<Account> list = ac.findAll();
 //		for(Account a:list) {
@@ -366,7 +380,7 @@ public class ConsoleUtility {
 	}
 
 	private void employeeViewAccount() {
-		System.out.println("Do you want to view an account? Yes (y), No (n) means exit.");
+		System.out.println("Do you want to view an account? [Y]es or [N]o. (No will exit application");
 		String in = scan.nextLine();
 		in = in.toLowerCase();
 		if (in.equals("y")) {
@@ -376,47 +390,47 @@ public class ConsoleUtility {
 			Account a = as.findAccountById(id);
 			System.out.println(a);
 			employeeChangeStatusOfAccount(a);
-		} else if (in.equals("n")){
-			System.out.println("See ya later employee.");
+		} else if (in.equals("n")) {
+			System.out.println("You have been logged out.");
 		} else {
-			System.out.println("Didn't get that.");
+			System.out.println("Invalid input.");
 			employeeMenu();
 		}
-		
+
 	}
 
 	private void employeeChangeStatusOfAccount(Account a) {
-		System.out.println("Do you want to change the status of this account? Yes (y), No (n).");
+		System.out.println("Do you want to change the status of this account? [Y]es or [N]o.");
 		String answer = scan.nextLine();
 		answer = answer.toLowerCase();
-		switch(answer) {
+		switch (answer) {
 		case "y":
 			updateStatusEmployee(a);
 		case "n":
 			System.out.println("Bye, employee");
 			break;
 		default:
-			System.out.println("System error.");
+			System.out.println("Invalid input.");
 			employeeMenu();
 			break;
 		}
-		
+
 	}
 
 	private void updateStatusEmployee(Account a) {
-		System.out.println("What do you want to change the status to be? Pending (p), Open (o).");
+		System.out.println("What do you want to change the status to be? [P]ending or [O]pen.");
 		String answer = scan.nextLine();
 		answer = answer.toLowerCase();
-		switch(answer) {
+		switch (answer) {
 		case "p":
-			System.out.println("The account status will be pending.");
-			Account acc = new Account(a.getAccountId(),  1, a.getAccountType(),a.getBalance(), a.getUser());
+			System.out.println("The account status is now pending.");
+			Account acc = new Account(a.getAccountId(), 1, a.getAccountType(), a.getBalance(), a.getUser());
 			as.updateAccount(acc);
 			employeeLogoutMenu();
 			break;
 		case "o":
-			System.out.println("The account status will be open.");
-			Account acco = new Account(a.getAccountId(), 2, a.getAccountType(), a.getBalance(),a.getUser());
+			System.out.println("The account status is now open.");
+			Account acco = new Account(a.getAccountId(), 2, a.getAccountType(), a.getBalance(), a.getUser());
 			as.updateAccount(acco);
 			employeeLogoutMenu();
 			break;
@@ -425,39 +439,36 @@ public class ConsoleUtility {
 			employeeMenu();
 			break;
 		}
-		
-		
+
 	}
 
 	private void employeeLogoutMenu() {
-		System.out.println("Do you want to look another account? Yes (y), No (n).");
+		System.out.println("Do you want to review another account? [Y]es or [N]o");
 		String answer = scan.nextLine();
 		answer = answer.toLowerCase();
-		switch(answer) {
+		switch (answer) {
 		case "y":
 			employeeMenu();
 			break;
 		case "n":
 			System.out.println("Goodbye, employee.");
 			loggedInUser = null;
-			System.out.println("You are now logged out.");
+			System.out.println("You have been logged out.");
 			break;
 		default:
-			System.out.println("System error.");
+			System.out.println("Invalid input.");
 			employeeMenu();
 			break;
 		}
-		
-		
+
 	}
 
 	private void viewAccountsAsEmployeeAdmin() {
 		List<Account> list = as.findAllAccounts();
-		for(Account a:list) {
+		for (Account a : list) {
 			System.out.println(a);
 		}
-		
-	}
-	
+
 	}
 
+}

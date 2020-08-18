@@ -118,6 +118,10 @@ public class AccountService  {
 	public void withdraw(double amount, int id) {
 		validateAmount(amount);
 		Account a = dao.getAccountById(id);
+		if(a == null ) {
+			//throw new IllegalArgumentException("You do not have a bank account attached to this user");
+			log.info("No bank account attached to this user");
+		}
 		if (a.getBalance() < amount) {
 			throw new IllegalArgumentException("Withdraw amount is greater than balance.");
 		} else {
