@@ -1,0 +1,22 @@
+2020-08-11 09:41:38 INFO  Driver:11 - The application has started
+2020-08-11 20:34:43 INFO  Driver:11 - The application has started.
+2020-08-11 20:34:43 INFO  Driver:26 - The application has closed.
+2020-08-11 21:06:30 INFO  Driver:11 - The application has started.
+2020-08-11 21:06:30 INFO  Driver:27 - The application has closed.
+2020-08-13 09:19:22 INFO  Driver:18 - The application has started.
+2020-08-13 09:19:22 INFO  Driver:49 - The application has closed.
+2020-08-13 09:21:56 INFO  Driver:18 - The application has started.
+2020-08-13 09:21:59 INFO  Driver:24 - connection succesful
+2020-08-13 09:21:59 INFO  Driver:49 - The application has closed.
+2020-08-17 18:31:09 INFO  Driver:23 - The application has started.
+2020-08-17 18:31:11 INFO  Driver:35 - connection successful
+2020-08-17 18:31:11 INFO  Driver:41 - The application has closed.
+2020-08-17 20:44:37 INFO  Driver:26 - The application has started.
+2020-08-17 20:44:38 INFO  Driver:38 - Connection successful
+2020-08-17 20:44:38 INFO  Driver:44 - The application has closed.
+2020-08-17 20:52:01 INFO  Driver:26 - The application has started.
+2020-08-17 20:52:02 INFO  Driver:38 - Connection successful
+2020-08-17 20:52:02 INFO  Driver:44 - The application has closed.
+2020-08-17 20:53:05 INFO  Driver:26 - The application has started.
+2020-08-17 20:53:05 INFO  Driver:38 - Connection successful
+2020-08-17 20:53:05 INFO  Driver:44 - The application has closed.
