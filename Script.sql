@@ -16,8 +16,8 @@ CREATE TABLE accounts(
 	account_balance NUMERIC(10, 2) DEFAULT 0,
 	user_id_fk INTEGER REFERENCES users(user_id)
 );
- 
-/*CREATE OR REPLACE FUNCTION trigger_set_time() RETURNS TRIGGER 
+
+CREATE OR REPLACE FUNCTION trigger_set_time() RETURNS TRIGGER 
 AS $$
 BEGIN
 	NEW.update_at = NOW();
@@ -28,5 +28,5 @@ $$ LANGUAGE plpgsql;
 ALTER TABLE accounts ADD COLUMN update_at TIMESTAMP;
 
 CREATE TRIGGER set_time BEFORE UPDATE ON accounts FOR EACH ROW
-EXECUTE PROCEDURE trigger_set_time();*/
+EXECUTE PROCEDURE trigger_set_time();
 

@@ -39,6 +39,7 @@ public class UserDAO implements IUserDAO {
 				u.setPassword(result.getString("user_password"));
 				u.setUserType(result.getString("user_type"));
 				// why this way instead of the way in avengers?
+				//I think its the same, just different ways
 
 				list.add(u);
 			}

@@ -18,6 +18,7 @@ public interface IAccountDAO {
 	public boolean addAccountWithUser(Account bank); // different than create account?
 	
 	public boolean deleteAccount(int id);
+	void updateWithAccountId(double balance, int id);
 
 
 }

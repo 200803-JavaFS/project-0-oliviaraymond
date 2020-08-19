@@ -143,6 +143,25 @@ public class AccountDAO implements IAccountDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void updateWithAccountId(double balance, int id) {
+		try (Connection conn = ConnectionUtility.getConnection()) {
+			String sql = "UPDATE accounts SET account_balance = ? WHERE account_number = ?;";
+
+			PreparedStatement statement = conn.prepareStatement(sql);
+
+			int index = 0;
+
+			statement.setDouble(++index, balance);
+			statement.setInt(++index, id);
+
+			statement.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public boolean updateAccount(Account bank) {

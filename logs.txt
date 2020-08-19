@@ -336,3 +336,103 @@
 2020-08-18 22:54:12 INFO  Driver:22 - The application has started.
 2020-08-18 22:54:14 INFO  Driver:26 - Connection successful
 2020-08-18 22:54:24 INFO  Driver:39 - The application has closed.
+2020-08-19 05:55:44 INFO  Driver:22 - The application has started.
+2020-08-19 05:55:46 INFO  Driver:26 - Connection successful
+2020-08-19 05:56:06 INFO  AccountService:177 - adding a user: User [id=0, firstName=Tim, lastName=Gattie, email=tm, password=tim, userType=customer]
+2020-08-19 05:57:11 INFO  AccountService:36 - finding account with id 10
+2020-08-19 05:57:12 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 05:58:48 INFO  Driver:22 - The application has started.
+2020-08-19 05:58:49 INFO  Driver:26 - Connection successful
+2020-08-19 05:58:58 INFO  AccountService:36 - finding account with id 10
+2020-08-19 05:58:58 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 05:59:04 INFO  AccountService:36 - finding account with id 10
+2020-08-19 05:59:05 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 05:59:50 INFO  Driver:22 - The application has started.
+2020-08-19 05:59:52 INFO  Driver:26 - Connection successful
+2020-08-19 06:00:00 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:00:01 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 06:00:09 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:00:09 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 06:00:15 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:00:17 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 06:01:07 INFO  AccountService:64 - Adding account: Account [accountId=999999, status=1, accountType=SAVINGS, balance=0.0, userId=10]
+2020-08-19 06:02:40 INFO  Driver:22 - The application has started.
+2020-08-19 06:02:41 INFO  Driver:26 - Connection successful
+2020-08-19 06:02:55 INFO  AccountService:64 - Adding account: Account [accountId=999999, status=1, accountType=SAVINGS, balance=0.0, userId=10]
+2020-08-19 06:02:56 INFO  AccountService:149 - Retrieving user accounts
+2020-08-19 06:05:33 INFO  Driver:22 - The application has started.
+2020-08-19 06:05:35 INFO  Driver:26 - Connection successful
+2020-08-19 06:05:50 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:05:58 INFO  AccountService:118 - deposited 10.0into: 10
+2020-08-19 06:05:58 INFO  AccountService:149 - Retrieving user accounts
+2020-08-19 06:06:50 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:07:25 INFO  Driver:22 - The application has started.
+2020-08-19 06:07:27 INFO  Driver:26 - Connection successful
+2020-08-19 06:07:37 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:07:49 INFO  AccountService:140 - transfered 1.45into: 2
+2020-08-19 06:07:49 INFO  AccountService:149 - Retrieving user accounts
+2020-08-19 06:12:03 INFO  AccountService:25 - Retrieving all accounts
+2020-08-19 06:12:14 INFO  AccountService:41 - finding account with account id 5
+2020-08-19 06:12:18 INFO  AccountService:46 - Updating account Account [accountId=5, status=2, accountType=SAVINGS, balance=10.0, userId=10]
+2020-08-19 06:12:26 INFO  AccountService:41 - finding account with account id 2
+2020-08-19 06:25:21 INFO  Driver:22 - The application has started.
+2020-08-19 06:25:22 INFO  Driver:26 - Connection successful
+2020-08-19 06:25:54 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:28:04 INFO  Driver:22 - The application has started.
+2020-08-19 06:28:07 INFO  Driver:26 - Connection successful
+2020-08-19 06:28:22 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:29:18 INFO  Driver:22 - The application has started.
+2020-08-19 06:29:19 INFO  Driver:26 - Connection successful
+2020-08-19 06:29:31 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:29:34 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:29:36 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:45:49 INFO  Driver:22 - The application has started.
+2020-08-19 06:45:51 INFO  Driver:26 - Connection successful
+2020-08-19 06:45:59 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:47:50 INFO  AccountService:25 - Retrieving all accounts
+2020-08-19 06:48:16 INFO  AccountService:41 - finding account with account id 4
+2020-08-19 06:48:21 INFO  AccountService:46 - Updating account Account [accountId=4, status=2, accountType=SAVINGS, balance=10.0, userId=10]
+2020-08-19 06:48:30 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:48:59 INFO  AccountService:153 - Retrieving user accounts
+2020-08-19 06:51:32 INFO  Driver:22 - The application has started.
+2020-08-19 06:51:34 INFO  Driver:26 - Connection successful
+2020-08-19 06:51:42 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:51:53 INFO  AccountService:153 - Retrieving user accounts
+2020-08-19 06:55:59 INFO  Driver:22 - The application has started.
+2020-08-19 06:56:01 INFO  Driver:26 - Connection successful
+2020-08-19 06:56:13 INFO  AccountService:36 - finding account with id 10
+2020-08-19 06:56:21 INFO  AccountService:152 - Retrieving user accounts
+2020-08-19 07:05:56 INFO  Driver:22 - The application has started.
+2020-08-19 07:05:58 INFO  Driver:26 - Connection successful
+2020-08-19 07:06:09 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:06:15 INFO  AccountService:102 - Amount zero or less is not allowed.
+2020-08-19 07:09:38 INFO  Driver:22 - The application has started.
+2020-08-19 07:09:40 INFO  Driver:26 - Connection successful
+2020-08-19 07:09:47 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:09:50 INFO  AccountService:152 - Retrieving user accounts
+2020-08-19 07:10:37 INFO  Driver:22 - The application has started.
+2020-08-19 07:10:39 INFO  Driver:26 - Connection successful
+2020-08-19 07:10:57 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:13:42 INFO  Driver:22 - The application has started.
+2020-08-19 07:13:44 INFO  Driver:26 - Connection successful
+2020-08-19 07:13:55 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:14:03 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:14:07 INFO  AccountService:102 - Amount zero or less is not allowed.
+2020-08-19 07:16:02 INFO  Driver:22 - The application has started.
+2020-08-19 07:16:04 INFO  Driver:26 - Connection successful
+2020-08-19 07:16:17 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:17:28 INFO  Driver:22 - The application has started.
+2020-08-19 07:17:30 INFO  Driver:26 - Connection successful
+2020-08-19 07:17:38 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:17:42 INFO  AccountService:152 - Retrieving user accounts
+2020-08-19 07:18:14 INFO  Driver:22 - The application has started.
+2020-08-19 07:18:16 INFO  Driver:26 - Connection successful
+2020-08-19 07:18:22 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:18:47 INFO  Driver:22 - The application has started.
+2020-08-19 07:18:48 INFO  Driver:26 - Connection successful
+2020-08-19 07:18:59 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:19:04 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:19:07 INFO  AccountService:102 - Amount zero or less is not allowed.
+2020-08-19 07:19:09 INFO  AccountService:36 - finding account with id 10
+2020-08-19 07:19:12 INFO  AccountService:127 - withdrew 2.0into: 10
+2020-08-19 07:19:12 INFO  AccountService:152 - Retrieving user accounts

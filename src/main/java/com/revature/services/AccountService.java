@@ -131,14 +131,17 @@ public class AccountService  {
 		}
 
 	
-	public void transfer(double amount, int accountId) {
+	public void transfer(double amount, int accountTo, int accountFrom) {
 		validateAmount(amount);
-		Account a = dao.getAccountByAccountId(accountId);
-		if (a.getBalance() >= amount) {
-			if (a.getStatus() == 2) {
-				dao.update(amount, accountId);
-				log.info("transfered " +amount+ "into: "+ accountId);
-				
+		Account a = dao.getAccountByAccountId(accountTo);
+		Account a1 = dao.getAccountByAccountId(accountFrom);
+		if (a1.getBalance() >= amount) {
+			if (a1.getStatus() == 2 && a.getStatus() ==2) {
+				double newAmount1 = a1.getBalance() - amount;
+				double newAmount = a.getBalance() + amount;
+				dao.updateWithAccountId(newAmount1, accountFrom);
+				dao.updateWithAccountId(newAmount, accountTo);
+				log.info("transfered " +amount+ "into: "+ accountTo + "from: " + accountFrom);
 			} else {
 				throw new IllegalArgumentException("Not an available account.");
 			}

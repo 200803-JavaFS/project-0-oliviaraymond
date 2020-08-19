@@ -45,6 +45,38 @@ public class ConsoleUtility {
 		}
 	}
 
+	public void mainMenu() {
+		System.out.println("Welcome to Olivia's Bank! \n" + "Who are you? \n" + "I am a [C]urrent Customer \n"
+				+ "I am a [N]ew Customer \n" + "I am an [E]mployee \n" + "I am an [A]dmin \n" + "[X]");
+		String answer = scan.nextLine();
+		answerSwitch(answer);
+	}
+
+	private void answerSwitch(String answer) {
+		answer = answer.toLowerCase();
+
+		switch (answer) {
+		case "c":
+			currentCustomerMenu();
+			break;
+		case "n":
+			newCustomerMenu();
+			break;
+		case "e":
+			employeeMenu();
+			break;
+		case "a":
+			adminMenu();
+			break;
+		case "x":
+			exit = true;
+			break;
+		default:
+			System.out.println("Error. Please type one of the three options listed.");
+			break;
+		}
+	}
+
 	private void operationMenu(User u) {
 		System.out.println("Welcome to Olivia's Bank! \n" + "What would you like to do? \n" + "[W]ithdraw \n"
 				+ "[D]eposit \n" + "[T]ransfer \n" + "[U]pdate \n" + "[O]pen an account \n" + "[L]ogout");
@@ -62,38 +94,61 @@ public class ConsoleUtility {
 //			int accountW = scan.nextInt();
 
 			Account a = as.findAccountById(u.getId());
-			if (a.getAccountId() == 0) {
+			if (a == null) {
 				System.out.println("There is no account attached to this user. Please select 'open account'.");
-			} else {
-				System.out.println("How much would you like to withdraw?");
-				double amountW = scan.nextDouble();
-				scan.nextLine();
-				if (as.withdraw(amountW, u.getId())) {
-				System.out.println(amountW + " withdrew successfully.");
-				} else {
-					System.out.println("Not enough money in balance to withdraw " + amountW);
-				}
 			}
+			if (a.getStatus() != 2) {
+				System.out.println(
+						"Your account is pending or closed. Please wait for an employee or admin to approve your account.");
+			}
+			else {
+				try {
+					System.out.println("How much would you like to withdraw?");
+					double amountW = scan.nextDouble();
+					scan.nextLine();
+					 if (a.getBalance()-amountW < 0) {
+							System.out.println("Not enough money in account to withdraw " +amountW);
+						}
+					 else { if (as.withdraw(amountW, u.getId())) {
+						System.out.println(amountW + " withdrew successfully.");
+						viewAllUserAccounts(u);
+					 }
+					}
+				} catch (IllegalArgumentException e) {
+					System.out.println("Amount zero or less is not allowed. OR Fractions of a penny not allowed.");
+				}
+			} 
 			break;
 		case "d":
 			Account a1 = as.findAccountById(u.getId());
-			if (a1.getAccountId() == 0) {
+			if (a1 == null) {
 				System.out.println("There is no account attached to this user. Please select 'open account'.");
+			}
+			if (a1.getStatus() != 2) {
+				System.out.println(
+						"Your account is pending or closed. Please wait for an employee or admin to approve your account.");
 			} else {
-				System.out.println("How much would you like to deposit?");
-				double amountD = scan.nextDouble();
-				scan.nextLine();
-				if (as.deposit(amountD, u.getId())) {
-				System.out.println(amountD + " deposited successfully.");
+				try {
+					System.out.println("How much would you like to deposit?");
+					double amountD = scan.nextDouble();
+					scan.nextLine();
+					if (as.deposit(amountD, u.getId())) {
+						System.out.println(amountD + " deposited successfully.");
+						viewAllUserAccounts(u);
+					}
+				} catch (IllegalArgumentException e) {
+					System.out.println("Amount zero or less is not allowed. OR Fractions of a penny not allowed.");
 				}
-				System.out.println(a1.getBalance() + amountD);
-			
 			}
 			break;
 		case "t":
 			Account a2 = as.findAccountById(u.getId());
-			if (a2.getUserId() == 0) {
+			if (a2 == null) {
 				System.out.println("There is no account attached to this user. Please select 'open account'.");
+			}
+			if (a2.getStatus() != 2) {
+				System.out.println(
+						"Your account is pending or closed. Please wait for an employee or admin to approve your account.");
 			} else {
 				System.out.println("How much would you like to transfer?");
 				double amountT = scan.nextDouble();
@@ -101,7 +156,13 @@ public class ConsoleUtility {
 				System.out.println("Which account would you like to transfer to? Enter account id. ");
 				int accountIdT = scan.nextInt();
 				scan.nextLine();
-				as.transfer(amountT, accountIdT);
+				System.out.println("Which account would you like to transfer from? Enter account id. ");
+				int accountIdF = scan.nextInt();
+				scan.nextLine();
+				as.transfer(amountT, accountIdT, accountIdF);
+				System.out.println(amountT + " transferred successfully into account: " + accountIdT + " from account: "
+						+ accountIdF);
+				viewAllUserAccounts(u);
 			}
 			break;
 		case "u":
@@ -145,48 +206,18 @@ public class ConsoleUtility {
 		case "c":
 			a = new Account(1, "CHECKING", 0.0, u.getId());
 			as.insertAccount(a);
-			// viewAllUserAccounts(u);
+			System.out.println("New checking account added.");
+			viewAllUserAccounts(u);
 			break;
 		case "s":
 			a = new Account(1, "SAVINGS", 0.0, u.getId());
 			as.insertAccount(a);
-			// viewAllUserAccounts(u);
+			System.out.println("New savings account added.");
+			viewAllUserAccounts(u);
 			break;
 		default:
 			System.out.println("Type a S or a C.");
 			operationMenu(u);
-			break;
-		}
-	}
-
-	public void mainMenu() {
-		System.out.println("Welcome to Olivia's Bank! \n" + "Who are you? \n" + "I am a [C]urrent Customer \n"
-				+ "I am a [N]ew Customer \n" + "I am an [E]mployee \n" + "I am an [A]dmin \n" + "[X]");
-		String answer = scan.nextLine();
-		answerSwitch(answer);
-	}
-
-	private void answerSwitch(String answer) {
-		answer = answer.toLowerCase();
-
-		switch (answer) {
-		case "c":
-			currentCustomerMenu();
-			break;
-		case "n":
-			newCustomerMenu();
-			break;
-		case "e":
-			employeeMenu();
-			break;
-		case "a":
-			adminMenu();
-			break;
-		case "x":
-			exit = true;
-			break;
-		default:
-			System.out.println("Error. Please type one of the three options listed.");
 			break;
 		}
 	}
@@ -337,7 +368,7 @@ public class ConsoleUtility {
 				adminMenu();
 				break;
 			case "e":
-				System.out.println("Goodbye, admin.");
+				System.out.println("Goodbye, Admin.");
 				break;
 			default:
 				System.out.println("Invalid input");
@@ -379,7 +410,7 @@ public class ConsoleUtility {
 			try {
 				adminMenu();
 			} catch (InputMismatchException e) {
-				System.out.println("catching InputMismatchException here");
+				System.out.println("Invalid input");
 				beginApp();
 			}
 
@@ -404,10 +435,6 @@ public class ConsoleUtility {
 			System.out.println("As an employee, you are able to view account and user information.");
 			System.out.println("All accounts in database:");
 			viewAccountsAsEmployeeAdmin();
-//			List<Account> list = ac.findAll();
-//			for(Account a:list) {
-//				System.out.println(a);
-//			}
 			try {
 				employeeViewAccount();
 			} catch (InputMismatchException e) {
