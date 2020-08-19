@@ -436,3 +436,38 @@
 2020-08-19 07:19:09 INFO  AccountService:36 - finding account with id 10
 2020-08-19 07:19:12 INFO  AccountService:127 - withdrew 2.0into: 10
 2020-08-19 07:19:12 INFO  AccountService:152 - Retrieving user accounts
+2020-08-19 07:32:54 INFO  Driver:22 - The application has started.
+2020-08-19 07:32:56 INFO  Driver:26 - Connection successful
+2020-08-19 07:33:16 INFO  AccountService:180 - adding a user: User [id=0, firstName=Test, lastName=Test, email=Test, password=Test, userType=customer]
+2020-08-19 07:35:16 INFO  Driver:22 - The application has started.
+2020-08-19 07:35:17 INFO  Driver:26 - Connection successful
+2020-08-19 07:37:07 INFO  AccountService:180 - adding a user: User [id=0, firstName=test, lastName=test, email=test, password=test, userType=test]
+2020-08-19 07:37:53 INFO  AccountService:180 - adding a user: User [id=0, firstName=Olivia, lastName=Raymond, email=ofr, password=s, userType=customer]
+2020-08-19 07:39:49 INFO  AccountService:36 - finding account with id 13
+2020-08-19 07:39:49 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 07:42:19 INFO  Driver:22 - The application has started.
+2020-08-19 07:42:21 INFO  Driver:26 - Connection successful
+2020-08-19 07:42:32 INFO  AccountService:36 - finding account with id 13
+2020-08-19 07:42:32 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 07:43:57 INFO  Driver:22 - The application has started.
+2020-08-19 07:43:59 INFO  Driver:26 - Connection successful
+2020-08-19 07:44:08 INFO  AccountService:36 - finding account with id 13
+2020-08-19 07:44:08 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 07:44:14 INFO  AccountService:36 - finding account with id 13
+2020-08-19 07:44:15 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 07:44:33 INFO  AccountService:36 - finding account with id 13
+2020-08-19 07:44:34 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 07:44:45 INFO  Driver:39 - The application has closed.
+2020-08-19 07:44:49 INFO  Driver:22 - The application has started.
+2020-08-19 07:44:50 INFO  Driver:26 - Connection successful
+2020-08-19 07:45:10 INFO  AccountService:180 - adding a user: User [id=0, firstName=Tim, lastName=G, email=tg, password=tim, userType=customer]
+2020-08-19 07:45:41 INFO  AccountService:36 - finding account with id 14
+2020-08-19 07:45:41 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 07:45:43 INFO  AccountService:36 - finding account with id 14
+2020-08-19 07:45:44 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 07:45:45 INFO  AccountService:36 - finding account with id 14
+2020-08-19 07:45:45 WARN  AccountDAO:68 - Failed query - getAccountByID
+2020-08-19 07:45:54 INFO  AccountService:64 - Adding account: Account [accountId=999999, status=1, accountType=CHECKING, balance=0.0, userId=14]
+2020-08-19 07:45:54 INFO  AccountService:152 - Retrieving user accounts
+2020-08-19 07:46:01 INFO  AccountService:36 - finding account with id 14
+2020-08-19 07:46:11 INFO  Driver:39 - The application has closed.

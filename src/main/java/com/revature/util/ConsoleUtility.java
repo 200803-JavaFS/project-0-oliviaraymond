@@ -97,34 +97,33 @@ public class ConsoleUtility {
 			if (a == null) {
 				System.out.println("There is no account attached to this user. Please select 'open account'.");
 			}
-			if (a.getStatus() != 2) {
+			else if (a.getStatus() != 2) {
 				System.out.println(
 						"Your account is pending or closed. Please wait for an employee or admin to approve your account.");
-			}
-			else {
+			} else {
 				try {
 					System.out.println("How much would you like to withdraw?");
 					double amountW = scan.nextDouble();
 					scan.nextLine();
-					 if (a.getBalance()-amountW < 0) {
-							System.out.println("Not enough money in account to withdraw " +amountW);
+					if (a.getBalance() - amountW < 0) {
+						System.out.println("Not enough money in account to withdraw " + amountW);
+					} else {
+						if (as.withdraw(amountW, u.getId())) {
+							System.out.println(amountW + " withdrew successfully.");
+							viewAllUserAccounts(u);
 						}
-					 else { if (as.withdraw(amountW, u.getId())) {
-						System.out.println(amountW + " withdrew successfully.");
-						viewAllUserAccounts(u);
-					 }
 					}
 				} catch (IllegalArgumentException e) {
 					System.out.println("Amount zero or less is not allowed. OR Fractions of a penny not allowed.");
 				}
-			} 
+			}
 			break;
 		case "d":
 			Account a1 = as.findAccountById(u.getId());
 			if (a1 == null) {
 				System.out.println("There is no account attached to this user. Please select 'open account'.");
 			}
-			if (a1.getStatus() != 2) {
+			else if (a1.getStatus() != 2) {
 				System.out.println(
 						"Your account is pending or closed. Please wait for an employee or admin to approve your account.");
 			} else {
@@ -146,7 +145,7 @@ public class ConsoleUtility {
 			if (a2 == null) {
 				System.out.println("There is no account attached to this user. Please select 'open account'.");
 			}
-			if (a2.getStatus() != 2) {
+			else if (a2.getStatus() != 2) {
 				System.out.println(
 						"Your account is pending or closed. Please wait for an employee or admin to approve your account.");
 			} else {
@@ -165,8 +164,22 @@ public class ConsoleUtility {
 				viewAllUserAccounts(u);
 			}
 			break;
-		case "u":
-			System.out.println("What would you like to update? ");
+		case "u": // not done implementing
+			System.out.println("What would you like to update? Your [N]ame, [e]mail, [p]assword? Or [L]ogout");
+			String update = scan.nextLine();
+			update.toLowerCase();
+			if (update.equals('n')) {
+				//change name
+			}
+			if (update.equals('e')) {
+				//change email
+			}
+			if (update.equals('p')) {
+				//change password
+			} else {
+				loggedInUser = null;
+				System.out.println("You are now logged out.");
+			}
 			// updateUser...(u);
 			break;
 		case "o":
