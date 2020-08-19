@@ -17,21 +17,9 @@ public class Driver {
 
 	public static final Logger Log = LogManager.getLogger(Driver.class);
 	
-//	private static UserDAO dao = new UserDAO();
 
 	public static void main(String[] args) {
-		
-		ConsoleUtility cons = new ConsoleUtility();
-		cons.beginApp();
 		Log.info("The application has started.");
-		
-		//consoleutil
-		
-		//to test and print out the UserDAO
-		//List<User> list = dao.findAll();
-		//for loop...
-		
-		
 
 		// this tests the connection to database
 		try(Connection conn = ConnectionUtility.getConnection()) {
@@ -41,6 +29,13 @@ public class Driver {
 		}
 
 
+		ConsoleUtility cons = new ConsoleUtility();
+		cons.beginApp();
+		
+		//to test and print out the UserDAO
+		//List<User> list = dao.findAll();
+		//for loop...
+		
 		Log.info("The application has closed.");
 
 

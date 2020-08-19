@@ -16,7 +16,7 @@ import com.revature.models.User;
 import com.revature.util.ConnectionUtility;
 
 public class UserDAO implements IUserDAO {
-	
+
 	private static final Logger log = LogManager.getLogger(UserDAO.class);
 
 	@Override
@@ -135,7 +135,6 @@ public class UserDAO implements IUserDAO {
 		return null;
 
 	}
-	
 
 	@Override
 	public User getUserByEmail(String name) {
@@ -171,6 +170,7 @@ public class UserDAO implements IUserDAO {
 		return null;
 
 	}
+
 	@Override
 	public boolean deleteUser(int id) {
 		try (Connection conn = ConnectionUtility.getConnection()) {
@@ -183,31 +183,23 @@ public class UserDAO implements IUserDAO {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public List<Account> findUserAccount(User u) {
-		try(Connection conn = ConnectionUtility.getConnection()) {
-			String sql = "SELECT * FROM accounts WHERE user_id_fk ="+u.getId()+";";
+		try (Connection conn = ConnectionUtility.getConnection()) {
+			String sql = "SELECT * FROM accounts WHERE user_id_fk =" + u.getId() + ";";
 			Statement statement = conn.createStatement();
 			List<Account> list = new ArrayList<>();
 			ResultSet result = statement.executeQuery(sql);
-			
-			while (result.next()) {
-				Account a = new Account(
-						result.getInt("account_number"),
-						result.getInt("status_of_account"),
-						result.getString("account_type"),
-						result.getDouble("account_balance"),
-						
-						null);
-				if (result.getInt("user_id_fk")!=0) {
-					a.setUser(this.getUserById(result.getInt("user_id_fk")));
-				}
-				list.add(a);
 
+			while (result.next()) {
+				Account a = new Account(result.getInt("account_number"), result.getInt("status_of_account"),
+						result.getString("account_type"), result.getDouble("account_balance"),
+						result.getInt("user_id_fk"));
+				list.add(a);
 			}
 			return list;
-			
+
 //			while(result.next()) {
 //				Account a = new Account();
 //				a.setAccountID(result.getInt("account_id")); 
@@ -219,8 +211,10 @@ public class UserDAO implements IUserDAO {
 //				
 //			}
 //			return list;
-			
-		} catch(SQLException e) {
+
+		} catch (
+
+		SQLException e) {
 			e.printStackTrace();
 		}
 		return null;

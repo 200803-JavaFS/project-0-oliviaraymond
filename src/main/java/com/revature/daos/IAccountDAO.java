@@ -19,4 +19,5 @@ public interface IAccountDAO {
 	
 	public boolean deleteAccount(int id);
 
+
 }

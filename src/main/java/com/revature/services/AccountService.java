@@ -37,6 +37,11 @@ public class AccountService  {
 		return dao.getAccountById(id);
 	}
 	
+	public Account findAccountByAccountId(int id) {
+		log.info("finding account with account id " +id);
+		return dao.getAccountByAccountId(id);
+	}
+	
 	public boolean updateAccount(Account a) {
 		log.info("Updating account "+ a);
 		if (dao.updateAccount(a)) {
@@ -46,31 +51,26 @@ public class AccountService  {
 	}
 	
 	public boolean insertAccount(Account a) {
-		if (a.getUser() != null) {
-			List<User> list = uDao.findAll();
-			log.info("list in insert account: "+ list);
-			boolean b = false;
-			for (User u: list) {
-				if (u.equals(a.getUser())) {
-					b = true;
-				}
-			}
-			if (b) {
+//		if (a.getUserId() != 0) {
+//			List<User> list = uDao.findAll();
+//			log.info("list in insert account: "+ list);
+//			boolean b = false;
+//			for (User u: list) {
+//				if (u.equals(a.getUserId())) {
+//					b = true;
+//				}
+//			}
+//			if (b) {
 				log.info("Adding account: " + a);
 				if (dao.createAccount(a)) {
 					return true;
 				}
-			} else {
-				log.info("Adding account: " + a + "with a new User:" + a.getUser());
-				if (dao.addAccountWithUser(a)) {
-					return true;
-				}
-			}
-		} else {
+//			}
+//		} else {
 //			log.info("Adding account: " + a);
 //			if (dao.createAccount(a)) {
 //				return true;
-			}
+//			}
 		return false;
 	}
 	
@@ -99,35 +99,37 @@ public class AccountService  {
 	
 	private void validateAmount(double amount) {
 		if (amount <= 0.0 ) {
+			log.info("Amount zero or less is not allowed.");
 			throw new IllegalArgumentException("Amount zero or less is not allowed.");
-
-		}
-		if ((amount * 100) % 1 != 0) {
-			throw new IllegalArgumentException("Fractions of a penny not allowed.");
 			
 		}
+		if ((amount * 100) % 1 != 0) {
+			log.info("Fractions of a penny not allowed.");
+			throw new IllegalArgumentException("Fractions of a penny not allowed.");
+		}
+
 	}
 	
 	
-	public void deposit(double amount, int id) {
+	public boolean deposit(double amount, int id) {
 		validateAmount(amount);
 		Account a = dao.getAccountById(id);
 		dao.update((a.getBalance() + amount), id);
+		log.info("deposited " +amount+ "into: "+ id);
+		return true;
 	}
 	
-	public void withdraw(double amount, int id) {
+	public boolean withdraw(double amount, int id) {
 		validateAmount(amount);
 		Account a = dao.getAccountById(id);
-		if(a == null ) {
-			//throw new IllegalArgumentException("You do not have a bank account attached to this user");
-			log.info("No bank account attached to this user");
-		}
-		if (a.getBalance() < amount) {
-			throw new IllegalArgumentException("Withdraw amount is greater than balance.");
-		} else {
+		if (a.getBalance()-amount > 0) {
 			dao.update((a.getBalance() - amount), id);
+			log.info("withdrew " +amount+ "into: "+ id);
+			return true;
 		}
-	}
+		return false;
+		}
+
 	
 	public void transfer(double amount, int accountId) {
 		validateAmount(amount);
@@ -135,6 +137,7 @@ public class AccountService  {
 		if (a.getBalance() >= amount) {
 			if (a.getStatus() == 2) {
 				dao.update(amount, accountId);
+				log.info("transfered " +amount+ "into: "+ accountId);
 				
 			} else {
 				throw new IllegalArgumentException("Not an available account.");
